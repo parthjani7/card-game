@@ -19,6 +19,10 @@ class CreateScoresTable extends Migration
             $table->string('user_cards');
             $table->unsignedTinyInteger('generated_points')->default(0);
             $table->unsignedTinyInteger('user_points')->default(0);
+            $table->unsignedBigInteger('user_id');
+            $table->boolean('is_user_won');
+            $table->boolean('is_machine_won'); //added this field to determine if game was tie
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
