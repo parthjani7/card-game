@@ -2052,6 +2052,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         key: "is_machine_won",
         label: "Generated Won?"
+      }, {
+        key: "created_at",
+        label: "Created"
       }],
       games: []
     };
@@ -2144,6 +2147,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // Reset form values
       this.form = {};
       this.resetScore();
+      this.resetErrors();
     },
     resetScore: function resetScore() {
       this.generated_cards = [];
@@ -63218,17 +63222,10 @@ var render = function() {
                           },
                           [
                             _c("b-form-input", {
-                              directives: [
-                                {
-                                  name: "validate",
-                                  rawName: "v-validate",
-                                  value: { required: true, min: 3 },
-                                  expression: "{ required: true, min: 3 }"
-                                }
-                              ],
                               class: _vm.errors.full_name ? "is-invalid" : "",
                               attrs: {
                                 id: "input-2",
+                                validate: { required: true, min: 3 },
                                 state: _vm.getValidationState(
                                   validationContext
                                 ),
@@ -63276,21 +63273,13 @@ var render = function() {
                           },
                           [
                             _c("b-form-input", {
-                              directives: [
-                                {
-                                  name: "validate",
-                                  rawName: "v-validate",
-                                  value: {
-                                    required: true,
-                                    regex: /^(([2-9,J,A,K,Q]\d{1})\ )$/
-                                  },
-                                  expression:
-                                    "{\n                            required: true,\n                            regex: /^(([2-9,J,A,K,Q]\\d{1})\\ )$/\n                        }"
-                                }
-                              ],
                               class: _vm.errors.cards ? "is-invalid" : "",
                               attrs: {
                                 id: "input-2",
+                                validate: {
+                                  required: true,
+                                  regex: /^(([2-9,J,A,K,Q]\d{1})\ )$/
+                                },
                                 state: _vm.getValidationState(
                                   validationContext
                                 ),
@@ -63332,7 +63321,7 @@ var render = function() {
                 "b-button",
                 {
                   attrs: { type: "reset", variant: "danger" },
-                  on: { click: _vm.reset }
+                  on: { click: _vm.resetForm }
                 },
                 [_vm._v("Reset")]
               )

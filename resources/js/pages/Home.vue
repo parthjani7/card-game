@@ -16,7 +16,7 @@
                             id="input-2"
                             v-model="form.full_name"
                             :class="errors.full_name ? 'is-invalid' : ''"
-                            v-validate="{ required: true, min: 3 }"
+                            :validate="{ required: true, min: 3 }"
                             :state="getValidationState(validationContext)"
                             placeholder="Enter Your Fullname"
                         ></b-form-input>
@@ -39,7 +39,7 @@
                         <b-form-input
                             id="input-2"
                             v-model="form.cards"
-                            v-validate="{
+                            :validate="{
                                 required: true,
                                 regex: /^(([2-9,J,A,K,Q]\d{1})\ )$/
                             }"
@@ -56,7 +56,7 @@
                     >Play Now</b-button
                 >
                 &nbsp;
-                <b-button type="reset" @click="reset" variant="danger"
+                <b-button type="reset" @click="resetForm" variant="danger"
                     >Reset</b-button
                 >
             </b-form>
@@ -111,7 +111,8 @@ export default {
                     key: "is_user_won",
                     label: "User Won?"
                 },
-                { key: "is_machine_won", label: "Generated Won?" }
+                { key: "is_machine_won", label: "Generated Won?" },
+                { key: "created_at", label: "Created" }
             ],
             games: []
         };
@@ -177,6 +178,7 @@ export default {
             // Reset form values
             this.form = {};
             this.resetScore();
+            this.resetErrors();
         },
         resetScore() {
             this.generated_cards = [];
