@@ -1,7 +1,5 @@
 <template>
-    <v-app>
-        <div class="container-fluid">
-            <router-view></router-view>
-        </div>
-    </v-app>
+    <div class="container my-5">
+        <router-view></router-view>
+    </div>
 </template>

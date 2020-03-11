@@ -4,8 +4,11 @@ import routes from "./routes.js";
 import App from "./views/App";
 import _ from "lodash";
 import axios from "axios";
+import { BootstrapVue } from "bootstrap-vue";
 
 Vue.use(VueRouter);
+Vue.use(BootstrapVue);
+
 Vue.prototype.$axios = axios;
 Vue.prototype.$_ = _;
 
