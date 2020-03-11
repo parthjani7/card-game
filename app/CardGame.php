@@ -4,7 +4,7 @@ namespace App;
 
 class CardGame
 {
-    private $deckOfCards = [
+    protected $deckOfCards = [
         '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'
     ];
     protected $autoSelectedCards = [];
@@ -56,5 +56,10 @@ class CardGame
             }
         }
         return ['player' => $player, 'generated' => $generated];
+    }
+
+    public function getDeckOfCards()
+    {
+        return $this->deckOfCards;
     }
 }

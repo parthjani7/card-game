@@ -6,6 +6,18 @@ import _ from "lodash";
 import axios from "axios";
 import { BootstrapVue } from "bootstrap-vue";
 
+import { ValidationObserver, ValidationProvider, extend } from "vee-validate";
+import * as rules from "vee-validate/dist/rules";
+
+// Install VeeValidate rules and localization
+Object.keys(rules).forEach(rule => {
+    extend(rule, rules[rule]);
+});
+
+// Install VeeValidate components globally
+Vue.component("ValidationObserver", ValidationObserver);
+Vue.component("ValidationProvider", ValidationProvider);
+
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 
